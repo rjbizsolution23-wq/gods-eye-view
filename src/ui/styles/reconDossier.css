@@ -1,0 +1,285 @@
+/* ═══════════════════════════════════════════════
+   RJ GOD'S EYE™ — AI Recon Dossier & Audio Briefing
+   Apple meets Blade Runner Tactical Intelligence
+   ═══════════════════════════════════════════════ */
+
+.rj-recon-dossier {
+  position: fixed;
+  top: 70px;
+  right: 24px;
+  width: 360px;
+  max-width: calc(100vw - 48px);
+  background: rgba(11, 18, 32, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(10, 102, 255, 0.4);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(10, 102, 255, 0.25);
+  color: #FFFFFF;
+  font-family: 'JetBrains Mono', 'Inter', monospace;
+  z-index: 10005;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(40px) scale(0.96);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rj-recon-dossier.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0) scale(1);
+}
+
+.rj-dossier-scanlines {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.rj-dossier-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(7, 12, 22, 0.8);
+  border-bottom: 1px solid rgba(10, 102, 255, 0.3);
+}
+
+.rj-dossier-brand-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #00D4FF;
+}
+
+.rj-dossier-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00D4FF;
+  box-shadow: 0 0 8px #00D4FF;
+  animation: rjDossierPulse 1.5s infinite;
+}
+
+@keyframes rjDossierPulse {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+.rj-dossier-close {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.rj-dossier-close:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.rj-dossier-content {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rj-dossier-headline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.rj-dossier-badge {
+  font-size: 9px;
+  font-weight: 700;
+  color: #0A66FF;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.rj-dossier-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: 0.5px;
+  word-break: break-all;
+}
+
+.rj-dossier-threat {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid #10B981;
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.1);
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+.rj-dossier-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background: rgba(7, 12, 22, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.rj-telemetry-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rj-telemetry-item small {
+  font-size: 8.5px;
+  color: #94A3B8;
+  letter-spacing: 0.5px;
+}
+
+.rj-telemetry-item strong {
+  font-size: 11px;
+  color: #F8FBFF;
+  font-weight: 700;
+}
+
+.rj-dossier-intel-box {
+  background: rgba(10, 102, 255, 0.08);
+  border: 1px solid rgba(10, 102, 255, 0.25);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.rj-intel-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #0A66FF;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.rj-intel-label .material-symbols-outlined {
+  font-size: 14px;
+}
+
+.rj-intel-text {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #E2E8F0;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Audio Wave Visualizer */
+.rj-voice-wave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 18px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.rj-voice-wave.active {
+  opacity: 1;
+}
+
+.rj-voice-wave span {
+  width: 3px;
+  height: 4px;
+  background: #00D4FF;
+  border-radius: 2px;
+  animation: rjWaveBar 0.8s ease-in-out infinite alternate;
+}
+
+.rj-voice-wave span:nth-child(1) { animation-delay: 0.1s; }
+.rj-voice-wave span:nth-child(2) { animation-delay: 0.2s; }
+.rj-voice-wave span:nth-child(3) { animation-delay: 0.4s; }
+.rj-voice-wave span:nth-child(4) { animation-delay: 0.15s; }
+.rj-voice-wave span:nth-child(5) { animation-delay: 0.35s; }
+.rj-voice-wave span:nth-child(6) { animation-delay: 0.25s; }
+.rj-voice-wave span:nth-child(7) { animation-delay: 0.45s; }
+.rj-voice-wave span:nth-child(8) { animation-delay: 0.1s; }
+
+@keyframes rjWaveBar {
+  0% { height: 4px; }
+  100% { height: 16px; background: #0A66FF; }
+}
+
+.rj-dossier-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.rj-dossier-btn {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  color: #FFFFFF;
+  padding: 8px 10px;
+  border-radius: 7px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.rj-dossier-btn:hover {
+  background: rgba(10, 102, 255, 0.2);
+  border-color: #0A66FF;
+  box-shadow: 0 0 10px rgba(10, 102, 255, 0.3);
+}
+
+.rj-dossier-btn.rj-btn-voice {
+  background: linear-gradient(135deg, rgba(10, 102, 255, 0.3) 0%, rgba(0, 59, 143, 0.3) 100%);
+  border-color: rgba(10, 102, 255, 0.5);
+}
+
+.rj-dossier-btn.rj-btn-voice.speaking {
+  background: linear-gradient(135deg, #EF4444 0%, #B91C1C 100%);
+  border-color: #EF4444;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
+}
+
+.rj-dossier-btn.rj-btn-export:hover {
+  border-color: #00D4FF;
+  color: #00D4FF;
+}
