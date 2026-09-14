@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RJ God's Eye™ — Enterprise 3D Planetary Situational Intelligence OS</title>
+  <meta name="description" content="Command the planet in real time. Full-domain 3D planetary operating system tracking flights, maritime cargo, orbital satellites, and municipal CCTV with AI tactical recon. By Rick Jefferson | RJ Business Solutions." />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet" />
+
+  <style>
+    :root {
+      --rj-primary: #0A66FF;
+      --rj-primary-dark: #003B8F;
+      --rj-primary-light: #EAF3FF;
+      --rj-accent: #00D4FF;
+      --rj-surface: #070C16;
+      --rj-card-bg: rgba(11, 18, 32, 0.85);
+      --rj-card-border: rgba(10, 102, 255, 0.25);
+      --rj-text-main: #F8FBFF;
+      --rj-text-muted: #94A3B8;
+      --rj-glow: 0 0 30px rgba(10, 102, 255, 0.4);
+      --rj-glow-cyan: 0 0 30px rgba(0, 212, 255, 0.4);
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--rj-surface);
+      color: var(--rj-text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(10, 102, 255, 0.18), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(0, 212, 255, 0.08), transparent),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(0, 59, 143, 0.15), transparent);
+    }
+
+    /* ── Top Navigation Bar ── */
+    .funnel-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(7, 12, 22, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--rj-card-border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .nav-logo-img {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1.5px solid var(--rj-primary);
+      box-shadow: 0 0 12px rgba(10, 102, 255, 0.5);
+    }
+
+    .nav-title {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-title span {
+      color: var(--rj-primary);
+    }
+
+    .nav-badge {
+      background: var(--rj-primary);
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-link {
+      color: var(--rj-text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: #FFFFFF;
+    }
+
+    .nav-cta-btn {
+      background: linear-gradient(135deg, #0A66FF 0%, #003B8F 100%);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-cta-btn:hover {
+      box-shadow: var(--rj-glow);
+      transform: translateY(-1px);
+    }
+
+    /* ── Hero Section ── */
+    .hero-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px 60px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(10, 102, 255, 0.12);
+      border: 1px solid rgba(10, 102, 255, 0.4);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--rj-accent);
+      margin-bottom: 24px;
+      box-shadow: 0 0 20px rgba(10, 102, 255, 0.2);
+    }
+
+    .hero-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 8px #10B981;
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.8; }
+    }
+
+    .hero-title {
+      font-size: 54px;
+      line-height: 1.15;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+      background: linear-gradient(180deg, #FFFFFF 30%, #94A3B8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #0A66FF 0%, #00D4FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 19px;
+      color: var(--rj-text-muted);
+      max-width: 760px;
+      margin: 0 auto 36px;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0A66FF 0%, #003B8F 100%);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: var(--rj-glow);
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(10, 102, 255, 0.6);
+    }
+
+    .btn-secondary {
+      background: rgba(15, 23, 42, 0.8);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 8px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(10, 102, 255, 0.15);
+      border-color: var(--rj-primary);
+    }
+
+    /* ── Live Telemetry Stats Bar ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 1050px;
+      margin: 0 auto;
+      background: rgba(11, 18, 32, 0.7);
+      border: 1px solid var(--rj-card-border);
+      border-radius: 14px;
+      padding: 24px;
+      backdrop-filter: blur(12px);
+    }
+
+    .stat-item {
+      text-align: center;
+      border-right: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-num {
+      font-family: var(--font-mono);
+      font-size: 28px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+
+    .stat-num span {
+      color: var(--rj-accent);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--rj-text-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Product Showcase Mockup ── */
+    .showcase-container {
+      max-width: 1100px;
+      margin: 40px auto 80px;
+      padding: 0 24px;
+    }
+
+    .mockup-frame {
+      background: #0B1220;
+      border: 1.5px solid var(--rj-card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.8), var(--rj-glow);
+      position: relative;
+    }
+
+    .mockup-header {
+      background: #070C16;
+      border-bottom: 1px solid rgba(10, 102, 255, 0.3);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mockup-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .mockup-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .mockup-dots span:nth-child(1) { background: #EF4444; }
+    .mockup-dots span:nth-child(2) { background: #F59E0B; }
+    .mockup-dots span:nth-child(3) { background: #10B981; }
+
+    .mockup-url {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--rj-text-muted);
+      background: rgba(15, 23, 42, 0.8);
+      padding: 4px 16px;
+      border-radius: 4px;
+      border: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .mockup-body {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+      background: radial-gradient(circle at center, rgba(10, 102, 255, 0.12) 0%, #0B1220 80%);
+    }
+
+    .mockup-visual {
+      background: rgba(7, 12, 22, 0.9);
+      border: 1px solid rgba(10, 102, 255, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .mockup-recon-card {
+      background: rgba(11, 18, 32, 0.95);
+      border: 1px solid #00D4FF;
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: var(--rj-glow-cyan);
+    }
+
+    /* ── Features Matrix ── */
+    .section-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--rj-primary);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 16px;
+      color: var(--rj-text-muted);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--rj-card-bg);
+      border: 1px solid var(--rj-card-border);
+      border-radius: 14px;
+      padding: 30px;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card:hover {
+      border-color: var(--rj-primary);
+      transform: translateY(-4px);
+      box-shadow: var(--rj-glow);
+    }
+
+    .feature-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: rgba(10, 102, 255, 0.15);
+      border: 1px solid rgba(10, 102, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: var(--rj-accent);
+    }
+
+    .feature-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #FFFFFF;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--rj-text-muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    /* ── Who This Is For ── */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .audience-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      gap: 18px;
+    }
+
+    .audience-icon {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    .audience-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #FFFFFF;
+    }
+
+    .audience-text {
+      font-size: 13.5px;
+      color: var(--rj-text-muted);
+    }
+
+    /* ── Pricing Matrix ── */
+    .pricing-toggle-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 40px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 52px;
+      height: 28px;
+      background: rgba(148, 163, 184, 0.2);
+      border-radius: 14px;
+      cursor: pointer;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .toggle-knob {
+      position: absolute;
+      top: 3px;
+      left: 4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--rj-primary);
+      transition: all 0.2s;
+    }
+
+    .toggle-switch.annual .toggle-knob {
+      left: 26px;
+      background: #10B981;
+    }
+
+    .discount-badge {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10B981;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .plan-card {
+      background: var(--rj-card-bg);
+      border: 1px solid var(--rj-card-border);
+      border-radius: 16px;
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .plan-card.featured {
+      border-color: var(--rj-primary);
+      background: linear-gradient(180deg, rgba(10, 102, 255, 0.1) 0%, rgba(11, 18, 32, 0.95) 100%);
+      box-shadow: var(--rj-glow);
+      transform: scale(1.03);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--rj-primary);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .plan-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .plan-price-box {
+      margin: 16px 0 20px;
+    }
+
+    .plan-price {
+      font-family: var(--font-mono);
+      font-size: 38px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .plan-price span {
+      font-size: 14px;
+      color: var(--rj-text-muted);
+      font-weight: 400;
+    }
+
+    .plan-desc {
+      font-size: 13px;
+      color: var(--rj-text-muted);
+      margin-bottom: 24px;
+      min-height: 40px;
+    }
+
+    .plan-features-list {
+      list-style: none;
+      margin-bottom: 30px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .plan-features-list li {
+      font-size: 13px;
+      color: #CBD5E1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .plan-features-list li::before {
+      content: '✓';
+      color: var(--rj-primary);
+      font-weight: 800;
+    }
+
+    .plan-card.featured .plan-features-list li::before {
+      color: var(--rj-accent);
+    }
+
+    .plan-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .plan-btn-primary {
+      background: var(--rj-primary);
+      color: #FFFFFF;
+      box-shadow: 0 4px 16px rgba(10, 102, 255, 0.4);
+    }
+
+    .plan-btn-primary:hover {
+      background: #0052cc;
+      transform: translateY(-1px);
+    }
+
+    .plan-btn-outline {
+      background: rgba(15, 23, 42, 0.8);
+      color: #FFFFFF;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .plan-btn-outline:hover {
+      border-color: var(--rj-primary);
+      background: rgba(10, 102, 255, 0.15);
+    }
+
+    /* ── Founder Authority Profile ── */
+    .founder-box {
+      background: rgba(11, 18, 32, 0.9);
+      border: 1.5px solid var(--rj-card-border);
+      border-radius: 18px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 36px;
+      align-items: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .founder-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 16px;
+      object-fit: cover;
+      border: 2px solid var(--rj-primary);
+      box-shadow: var(--rj-glow);
+    }
+
+    .founder-name {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .founder-role {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--rj-accent);
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    .founder-quote {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #CBD5E1;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .founder-badges {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .f-badge {
+      background: rgba(10, 102, 255, 0.12);
+      border: 1px solid rgba(10, 102, 255, 0.3);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #F8FBFF;
+    }
+
+    /* ── Interactive Capabilities Calculator ── */
+    .calc-card {
+      background: rgba(11, 18, 32, 0.85);
+      border: 1px solid var(--rj-card-border);
+      border-radius: 16px;
+      padding: 36px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .calc-slider-group {
+      margin-bottom: 24px;
+    }
+
+    .calc-slider-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .calc-slider-value {
+      font-family: var(--font-mono);
+      color: var(--rj-accent);
+      font-weight: 700;
+    }
+
+    .calc-range {
+      width: 100%;
+      accent-color: var(--rj-primary);
+      cursor: pointer;
+    }
+
+    .calc-result-box {
+      background: rgba(7, 12, 22, 0.9);
+      border: 1px solid rgba(10, 102, 255, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 24px;
+    }
+
+    .calc-result-title {
+      font-size: 13px;
+      color: var(--rj-text-muted);
+    }
+
+    .calc-result-tier {
+      font-size: 20px;
+      font-weight: 800;
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+    }
+
+    /* ── FAQ Section ── */
+    .faq-list {
+      max-width: 850px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .faq-item {
+      background: var(--rj-card-bg);
+      border: 1px solid var(--rj-card-border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .faq-item:hover {
+      border-color: var(--rj-primary);
+    }
+
+    .faq-question {
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #FFFFFF;
+    }
+
+    .faq-answer {
+      font-size: 14px;
+      color: var(--rj-text-muted);
+      line-height: 1.6;
+      margin-top: 12px;
+      display: none;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    .faq-item.active .faq-toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    /* ── Final CTA Banner ── */
+    .final-cta-box {
+      background: radial-gradient(circle at center, rgba(10, 102, 255, 0.3) 0%, rgba(11, 18, 32, 0.95) 80%);
+      border: 1.5px solid var(--rj-primary);
+      border-radius: 20px;
+      padding: 60px 30px;
+      text-align: center;
+      box-shadow: var(--rj-glow);
+    }
+
+    .final-cta-title {
+      font-size: 38px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .final-cta-sub {
+      font-size: 16px;
+      color: var(--rj-text-muted);
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+
+    /* ── Footer ── */
+    .funnel-footer {
+      background: #030712;
+      border-top: 1px solid rgba(148, 163, 184, 0.15);
+      padding: 60px 24px 30px;
+      color: var(--rj-text-muted);
+      font-size: 13px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 36px;
+    }
+
+    .footer-brand-info h4 {
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      font-family: var(--font-mono);
+    }
+
+    .footer-col h5 {
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+      letter-spacing: 0.5px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-links a {
+      color: var(--rj-text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--rj-primary);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid rgba(148, 163, 184, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-title { font-size: 38px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .features-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .plan-card.featured { transform: none; }
+      .mockup-body { grid-template-columns: 1fr; }
+      .founder-box { grid-template-columns: 1fr; text-align: center; }
+      .founder-img { margin: 0 auto; }
+      .founder-badges { justify-content: center; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .audience-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="funnel-nav" aria-label="Main Navigation">
+    <a href="/" class="nav-brand">
+      <img src="https://storage.googleapis.com/msgsndr/qQnxRHDtyx0uydPd5sRl/media/67eb83c5e519ed689430646b.jpeg" alt="RJ Business Solutions Logo" class="nav-logo-img" />
+      <div>
+        <div class="nav-title">RJ GOD'S <span>EYE™</span></div>
+      </div>
+      <span class="nav-badge">ENTERPRISE</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#features" class="nav-link">Capabilities</a>
+      <a href="#who-its-for" class="nav-link">Who It's For</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#founder" class="nav-link">Rick Jefferson</a>
+      <a href="/interactive-tutorial.html" class="nav-link">User Manual</a>
+      <a href="/" class="nav-cta-btn">
+        <span class="material-symbols-outlined" style="font-size: 16px;">public</span>
+        <span>LAUNCH CONSOLE</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-pill">
+      <span class="hero-pill-dot"></span>
+      <span>ALL-DOMAIN 3D SITUATIONAL INTELLIGENCE OS</span>
+    </div>
+
+    <h1 class="hero-title">
+      Command the Planet in <span>Real Time.</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      A photorealistic 3D planetary digital twin integrating live commercial and military flights, global AIS maritime cargo, orbital satellites, and municipal CCTV feeds with AI target reconnaissance. Authored by Rick Jefferson.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-primary">
+        <span>⚡ CLAIM OPERATOR ACCESS</span>
+        <span class="material-symbols-outlined">arrow_forward</span>
+      </a>
+      <a href="/" class="btn-secondary">
+        <span class="material-symbols-outlined">explore</span>
+        <span>LIVE INTERACTIVE DEMO</span>
+      </a>
+    </div>
+
+    <!-- Live Telemetry Counters -->
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-num">45,000<span>+</span></div>
+        <div class="stat-label">Live Commercial Flights</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">120,000<span>+</span></div>
+        <div class="stat-label">AIS Maritime Vessels</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2,800<span>+</span></div>
+        <div class="stat-label">SGP4 Satellites Mapped</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">&lt; 200<span>ms</span></div>
+        <div class="stat-label">Edge WebRTC Latency</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Interactive Mockup Preview -->
+  <section class="showcase-container">
+    <div class="mockup-frame">
+      <div class="mockup-header">
+        <div class="mockup-dots"><span></span><span></span><span></span></div>
+        <div class="mockup-url">https://rj-gods-eye.pages.dev · LIVE TELEMETRY STREAM</div>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: #10B981;">● FEED ONLINE</div>
+      </div>
+      <div class="mockup-body">
+        <div>
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--rj-primary); font-weight: 700; letter-spacing: 1px;">AUTONOMOUS SITUATIONAL AWARENESS</span>
+          <h3 style="font-size: 26px; font-weight: 800; margin: 8px 0 12px; color: #FFFFFF;">High-Precision 3D Photorealism Meets Real-Time OSINT</h3>
+          <p style="font-size: 14px; color: var(--rj-text-muted); line-height: 1.6; margin-bottom: 20px;">
+            Seamlessly zoom from deep LEO orbital satellite paths down to street-level 3D buildings, road traffic velocity vectors, and projected CCTV video cones in any major city worldwide.
+          </p>
+          <a href="/" class="nav-cta-btn" style="display: inline-flex;">
+            <span>ENTER 3D MISSION CONSOLE →</span>
+          </a>
+        </div>
+        <div class="mockup-visual">
+          <div class="mockup-recon-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 9px; font-weight: 700; color: #00D4FF; font-family: var(--font-mono);">AI RECON DOSSIER</span>
+              <span style="font-size: 9px; font-weight: 700; color: #10B981; border: 1px solid #10B981; padding: 2px 6px; border-radius: 4px; font-family: var(--font-mono);">VERIFIED</span>
+            </div>
+            <strong style="font-size: 14px; color: #FFFFFF; font-family: var(--font-mono);">TARGET: CARGO VESSEL · PACIFIC</strong>
+            <p style="font-size: 11px; color: var(--rj-text-muted); margin-top: 6px; font-family: var(--font-sans);">
+              AIS Transponder locked. Speed: 18.4 KTS. Vector: 245°. Route: Shanghai → Los Angeles Port. Status: On Schedule.
+            </p>
+          </div>
+          <div style="display: flex; gap: 8px; font-family: var(--font-mono); font-size: 11px;">
+            <span style="background: rgba(10,102,255,0.2); color: #FFFFFF; padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(10,102,255,0.4);">✈️ FLIGHTS: 45.2K</span>
+            <span style="background: rgba(0,212,255,0.2); color: #FFFFFF; padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(0,212,255,0.4);">🚢 AIS: 120.4K</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Features Matrix -->
+  <section id="features" class="section-wrapper">
+    <div class="section-header">
+      <span class="section-kicker">MISSION CAPABILITIES</span>
+      <h2 class="section-title">Built for Real-World Operational Supremacy</h2>
+      <p class="section-subtitle">Every layer engineered for low latency, surgical data accuracy, and immediate tactical clarity.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon-box">✈️</div>
+        <h3 class="feature-name">Global ADS-B Air Radar</h3>
+        <p class="feature-desc">
+          Live transponder tracking for commercial airliners and military transports. Ingests squawk codes, altitude profiles, speed, and real-time flight route projections.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">🚢</div>
+        <h3 class="feature-name">Global AIS Maritime Mesh</h3>
+        <p class="feature-desc">
+          High-throughput WebSocket stream tracking container carriers, oil tankers, bulk freighters, and tugs globally with destination ETA and dead reckoning.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">🛰️</div>
+        <h3 class="feature-name">SGP4 Orbital Constellations</h3>
+        <p class="feature-desc">
+          True orbital physics engine tracking the ISS, Starlink, Earth observation satellites, and defense payloads with real-time ground tracks and altitude envelopes.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">📹</div>
+        <h3 class="feature-name">3D CCTV Ground Projection</h3>
+        <p class="feature-desc">
+          Drapes municipal highway and intersection video feeds onto 3D terrain and building meshes with camera frustum calibration and auto-hopping.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">🎙️</div>
+        <h3 class="feature-name">AI Voice Mission Pilot</h3>
+        <p class="feature-desc">
+          Speak hands-free mission commands directly into your mic ("Track incoming ships in Singapore", "Level camera", "Switch to FLIR Thermal") powered by WebRTC OpenAI models.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">🧠</div>
+        <h3 class="feature-name">Tactical Recon Dossiers</h3>
+        <p class="feature-desc">
+          Click any airborne or sea vessel to instantly generate an OSINT tactical dossier with synthetic voice audio readouts and 1-click Markdown intelligence export.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who This Is For -->
+  <section id="who-its-for" class="section-wrapper" style="background: rgba(7, 12, 22, 0.5);">
+    <div class="section-header">
+      <span class="section-kicker">OPERATIONAL USE CASES</span>
+      <h2 class="section-title">Who Demands RJ God's Eye™?</h2>
+      <p class="section-subtitle">Trusted by operators who cannot afford blind spots or fragmented dashboards.</p>
+    </div>
+
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="audience-icon">⚓</div>
+        <div>
+          <h4 class="audience-title">Maritime & Supply Chain Logistics</h4>
+          <p class="audience-text">Monitor global container fleets, bottleneck chokepoints (Panama & Suez Canals), and port congestion in photorealistic 3D.</p>
+        </div>
+      </div>
+
+      <div class="audience-card">
+        <div class="audience-icon">🛡️</div>
+        <div>
+          <h4 class="audience-title">Private Security & Executive Protection</h4>
+          <p class="audience-text">Coordinate asset movements, survey municipal camera intersections, and monitor real-time road conditions before transit.</p>
+        </div>
+      </div>
+
+      <div class="audience-card">
+        <div class="audience-icon">📈</div>
+        <div>
+          <h4 class="audience-title">Commodity Traders & Quantitative Analysts</h4>
+          <p class="audience-text">Track crude oil tankers, LNG carriers, and bulk grain shipments to predict supply-chain disruptions ahead of the news cycle.</p>
+        </div>
+      </div>
+
+      <div class="audience-card">
+        <div class="audience-icon">🛰️</div>
+        <div>
+          <h4 class="audience-title">Defense Contractors & OSINT Researchers</h4>
+          <p class="audience-text">Unified multispectral situational intelligence combining orbital mechanics, airspace feeds, and seismic sensor networks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Capabilities Calculator -->
+  <section class="section-wrapper">
+    <div class="section-header">
+      <span class="section-kicker">DEPLOYMENT SIZING</span>
+      <h2 class="section-title">Configure Your Organization's Fleet</h2>
+      <p class="section-subtitle">Estimate your real-time tracking throughput and recommended deployment tier.</p>
+    </div>
+
+    <div class="calc-card">
+      <div class="calc-slider-group">
+        <div class="calc-slider-header">
+          <span>Active Asset / Coordinate Watchlist</span>
+          <span id="calc-assets-val" class="calc-slider-value">500 Assets</span>
+        </div>
+        <input type="range" id="calc-assets" class="calc-range" min="50" max="10000" step="50" value="500" oninput="updateCalculator()" />
+      </div>
+
+      <div class="calc-slider-group">
+        <div class="calc-slider-header">
+          <span>Concurrent Operator Seats</span>
+          <span id="calc-seats-val" class="calc-slider-value">3 Operators</span>
+        </div>
+        <input type="range" id="calc-seats" class="calc-range" min="1" max="50" step="1" value="3" oninput="updateCalculator()" />
+      </div>
+
+      <div class="calc-result-box">
+        <div>
+          <div class="calc-result-title">RECOMMENDED CONFIGURATION</div>
+          <div id="calc-tier-name" class="calc-result-tier">COMMAND FLEET TIER</div>
+        </div>
+        <a href="#pricing" class="btn-primary" style="padding: 10px 20px; font-size: 12px;">VIEW PLAN →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Matrix -->
+  <section id="pricing" class="section-wrapper">
+    <div class="section-header">
+      <span class="section-kicker">TRANSPARENT MONETIZATION</span>
+      <h2 class="section-title">Choose Your Operational Tier</h2>
+      <p class="section-subtitle">Instant deployment. Zero hardware requirements. Cancel anytime.</p>
+    </div>
+
+    <div class="pricing-toggle-wrap">
+      <span id="label-monthly" style="color: #FFFFFF; font-weight: 700;">MONTHLY</span>
+      <div id="billing-toggle" class="toggle-switch" onclick="toggleBilling()" aria-label="Toggle Annual Billing">
+        <div class="toggle-knob"></div>
+      </div>
+      <span id="label-annual" style="color: var(--rj-text-muted);">ANNUAL</span>
+      <span class="discount-badge">SAVE 20%</span>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Operator Plan -->
+      <div class="plan-card">
+        <div class="plan-name">Tactical Operator</div>
+        <div class="plan-desc">For independent analysts, private investigators, and single-desk operators.</div>
+        <div class="plan-price-box">
+          <div class="plan-price"><span class="price-val" data-monthly="$97" data-annual="$79">$97</span><span>/month</span></div>
+        </div>
+        <ul class="plan-features-list">
+          <li>1 Concurrent Operator Seat</li>
+          <li>Live ADS-B Flight Radar</li>
+          <li>Global AIS Maritime Cargo Tracking</li>
+          <li>USGS Seismic & NASA FIRMS Feeds</li>
+          <li>SGP4 Satellite Constellations</li>
+          <li>Standard AI Recon Dossiers</li>
+          <li>Edge Cloudflare Deployment</li>
+        </ul>
+        <a href="https://buy.stripe.com/test_operator" class="plan-btn plan-btn-outline">SELECT TACTICAL</a>
+      </div>
+
+      <!-- Command Fleet Plan (Featured) -->
+      <div class="plan-card featured">
+        <div class="featured-badge">MOST POPULAR</div>
+        <div class="plan-name" style="color: #00D4FF;">Command Fleet</div>
+        <div class="plan-desc">For security agencies, logistics dispatchers, and hedge fund trading desks.</div>
+        <div class="plan-price-box">
+          <div class="plan-price"><span class="price-val" data-monthly="$297" data-annual="$237" style="color: #00D4FF;">$297</span><span>/month</span></div>
+        </div>
+        <ul class="plan-features-list">
+          <li>5 Concurrent Operator Seats</li>
+          <li>Everything in Tactical Operator</li>
+          <li>3D CCTV Video Mesh Projection</li>
+          <li>Voice Mission Pilot (WebRTC)</li>
+          <li>Synthetic Voice Tactical Audio Briefings</li>
+          <li>1-Click Markdown/JSON Dossier Export</li>
+          <li>Priority Cloudflare Edge Bandwidth</li>
+          <li>Custom Area Geofencing & Alerts</li>
+        </ul>
+        <a href="https://buy.stripe.com/test_command" class="plan-btn plan-btn-primary">START COMMAND TRIAL</a>
+      </div>
+
+      <!-- Enterprise Sovereign -->
+      <div class="plan-card">
+        <div class="plan-name">Enterprise Sovereign</div>
+        <div class="plan-desc">For defense contractors, sovereign agencies, and enterprise security operations.</div>
+        <div class="plan-price-box">
+          <div class="plan-price"><span class="price-val" data-monthly="$1,497" data-annual="$1,197">$1,497</span><span>/month</span></div>
+        </div>
+        <ul class="plan-features-list">
+          <li>Unlimited Operator Seats</li>
+          <li>Custom Private RTSP / VMS Stream Ingestion</li>
+          <li>Dedicated Cloudflare Worker & Vectorize Memory</li>
+          <li>Custom White-Label Branding & Domain</li>
+          <li>Webhook & WebSockets Event Firehose</li>
+          <li>24/7 Dedicated Priority Engineering SLA</li>
+          <li>On-Premise / Air-Gapped Deployment Option</li>
+        </ul>
+        <a href="mailto:support@rjbusinesssolutions.org?subject=Enterprise%20God's%20Eye%20Inquiry" class="plan-btn plan-btn-outline">CONTACT SALES</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder Authority Section -->
+  <section id="founder" class="section-wrapper">
+    <div class="founder-box">
+      <img src="https://storage.googleapis.com/msgsndr/qQnxRHDtyx0uydPd5sRl/media/67eb83c5e519ed689430646b.jpeg" alt="Rick Jefferson — Founder, RJ Business Solutions" class="founder-img" />
+      <div>
+        <h3 class="founder-name">Rick Jefferson</h3>
+        <div class="founder-role">FOUNDER & CHIEF SYSTEM ARCHITECT · RJ BUSINESS SOLUTIONS</div>
+        <p class="founder-quote">
+          "We build business systems, autonomous agents, and situational infrastructure for serious operators who want execution without chaos. RJ God's Eye™ was engineered to eliminate fragmented screens and provide one unified, photorealistic command lens over the entire planet."
+        </p>
+        <div class="founder-badges">
+          <span class="f-badge">📍 Tijeras, New Mexico</span>
+          <span class="f-badge">⚡ Cloudflare Edge First</span>
+          <span class="f-badge">🛡️ Zero Fluff · Pure Execution</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section-wrapper">
+    <div class="section-header">
+      <span class="section-kicker">FREQUENTLY ASKED QUESTIONS</span>
+      <h2 class="section-title">Answers for Mission Operators</h2>
+      <p class="section-subtitle">Everything you need to know about deployment, data latency, and privacy.</p>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <span>What hardware or software do I need to run RJ God's Eye™?</span>
+          <span class="material-symbols-outlined faq-toggle-icon">expand_more</span>
+        </div>
+        <div class="faq-answer">
+          None. RJ God's Eye™ runs directly inside any modern web browser (Chrome, Edge, Safari, Firefox) on desktop, tablet, or mobile. It is accelerated by WebGL 2.0 and hosted on Cloudflare's global edge network for sub-second load times.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <span>How fresh is the flight and vessel tracking data?</span>
+          <span class="material-symbols-outlined faq-toggle-icon">expand_more</span>
+        </div>
+        <div class="faq-answer">
+          Aircraft ADS-B feeds refresh every 5 to 10 seconds via OpenSky Network and adsb.lol. Maritime AIS vessel feeds stream continuously over real-time WebSockets via AISStream, ensuring true sub-minute vessel positional accuracy.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <span>Can I ingest my company's private security cameras or vehicle GPS feeds?</span>
+          <span class="material-symbols-outlined faq-toggle-icon">expand_more</span>
+        </div>
+        <div class="faq-answer">
+          Yes. Under the Enterprise Sovereign plan, RJ Business Solutions provides custom RTSP, HLS, and WebRTC video ingestion pipelines to map your private facility cameras, drone fleets, and GPS trackers directly onto the 3D globe.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <span>Are my searches and tracking coordinates private?</span>
+          <span class="material-symbols-outlined faq-toggle-icon">expand_more</span>
+        </div>
+        <div class="faq-answer">
+          Yes. All telemetry queries are encrypted in transit via TLS 1.3. We do not sell or log customer coordinate surveillance data to third parties.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final High-Converting CTA Banner -->
+  <section class="section-wrapper">
+    <div class="final-cta-box">
+      <h2 class="final-cta-title">Ready to Command the Planet?</h2>
+      <p class="final-cta-sub">
+        Join hundreds of intelligence operators, logistics managers, and security professionals operating with zero blind spots.
+      </p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="#pricing" class="btn-primary" style="font-size: 15px; padding: 16px 36px;">
+          <span>⚡ GET STARTED NOW</span>
+        </a>
+        <a href="/" class="btn-secondary" style="font-size: 15px; padding: 16px 36px;">
+          <span>▶️ OPEN LIVE DEMO</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="funnel-footer">
+    <div class="footer-grid">
+      <div class="footer-brand-info">
+        <h4>RJ BUSINESS SOLUTIONS</h4>
+        <p style="margin-bottom: 12px; line-height: 1.6;">
+          Enterprise business systems, AI autonomous agents, and situational intelligence platforms. Built by Rick Jefferson.
+        </p>
+        <p><strong>Address:</strong> 1342 NM 333, Tijeras, New Mexico 87059</p>
+        <p><strong>Phone:</strong> +1 (414) 430-4277</p>
+        <p><strong>Email:</strong> support@rjbusinesssolutions.org</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Platform</h5>
+        <ul class="footer-links">
+          <li><a href="/">Live 3D Console</a></li>
+          <li><a href="/interactive-tutorial.html">User Manual</a></li>
+          <li><a href="#features">Capabilities</a></li>
+          <li><a href="#pricing">Pricing Plans</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Intelligence</h5>
+        <ul class="footer-links">
+          <li><a href="/">ADS-B Aviation Radar</a></li>
+          <li><a href="/">AIS Maritime Shipping</a></li>
+          <li><a href="/">SGP4 Space Satellites</a></li>
+          <li><a href="/">USGS Seismic Feed</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Legal & Trust</h5>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Security Statement</a></li>
+          <li><a href="#">DMCA Notice</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 RJ Business Solutions. All rights reserved. Authored by Rick Jefferson.</div>
+      <div style="display: flex; gap: 16px;">
+        <a href="https://rickjeffersonsolutions.com" target="_blank" style="color: inherit; text-decoration: none;">rickjeffersonsolutions.com</a>
+        <span>·</span>
+        <a href="https://github.com/rjbizsolution23-wq" target="_blank" style="color: inherit; text-decoration: none;">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Annual / Monthly Pricing Switcher
+    let isAnnual = false;
+    function toggleBilling() {
+      isAnnual = !isAnnual;
+      const toggle = document.getElementById('billing-toggle');
+      const monthlyLabel = document.getElementById('label-monthly');
+      const annualLabel = document.getElementById('label-annual');
+      
+      if (isAnnual) {
+        toggle.classList.add('annual');
+        monthlyLabel.style.color = 'var(--rj-text-muted)';
+        monthlyLabel.style.fontWeight = '400';
+        annualLabel.style.color = '#FFFFFF';
+        annualLabel.style.fontWeight = '700';
+      } else {
+        toggle.classList.remove('annual');
+        monthlyLabel.style.color = '#FFFFFF';
+        monthlyLabel.style.fontWeight = '700';
+        annualLabel.style.color = 'var(--rj-text-muted)';
+        annualLabel.style.fontWeight = '400';
+      }
+
+      document.querySelectorAll('.price-val').forEach(el => {
+        el.textContent = isAnnual ? el.getAttribute('data-annual') : el.getAttribute('data-monthly');
+      });
+    }
+
+    // FAQ Accordion
+    function toggleFaq(element) {
+      element.classList.toggle('active');
+    }
+
+    // Interactive Capabilities Calculator
+    function updateCalculator() {
+      const assets = parseInt(document.getElementById('calc-assets').value, 10);
+      const seats = parseInt(document.getElementById('calc-seats').value, 10);
+
+      document.getElementById('calc-assets-val').textContent = assets.toLocaleString() + ' Assets';
+      document.getElementById('calc-seats-val').textContent = seats + (seats === 1 ? ' Operator' : ' Operators');
+
+      const tierEl = document.getElementById('calc-tier-name');
+      if (seats > 10 || assets > 3000) {
+        tierEl.textContent = 'ENTERPRISE SOVEREIGN';
+        tierEl.style.color = '#A855F7';
+      } else if (seats > 1 || assets > 500) {
+        tierEl.textContent = 'COMMAND FLEET TIER';
+        tierEl.style.color = '#00D4FF';
+      } else {
+        tierEl.textContent = 'TACTICAL OPERATOR TIER';
+        tierEl.style.color = '#0A66FF';
+      }
+    }
+  </script>
+</body>
+</html>
