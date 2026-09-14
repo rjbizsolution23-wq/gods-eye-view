@@ -76,5 +76,32 @@ export function createStandaloneData({
   dataManager.buildTogglePanel(document.getElementById('data-toggles'));
   styleManager.attachDataManager(dataManager);
 
+  // RJ Business Solutions global layer toggle hook & real-time sync
+  window.dataManager = dataManager;
+  window.toggleRjLayer = (layerId) => {
+    try {
+      const isCurrent = dataManager.isEnabled(layerId);
+      dataManager.setEnabled(layerId, !isCurrent);
+      updateRjQuickPills();
+    } catch (e) {
+      console.warn(`[RJ Command Bar] Error toggling layer ${layerId}:`, e);
+    }
+  };
+
+  function updateRjQuickPills() {
+    document.querySelectorAll('[data-rj-quick-layer]').forEach((pill) => {
+      const id = pill.getAttribute('data-rj-quick-layer');
+      if (dataManager.isEnabled(id)) {
+        pill.classList.add('active');
+      } else {
+        pill.classList.remove('active');
+      }
+    });
+  }
+
+  // Poll state to ensure quick pills stay perfectly in sync with side toggles
+  setInterval(updateRjQuickPills, 800);
+  setTimeout(updateRjQuickPills, 200);
+
   return { dataManager };
 }

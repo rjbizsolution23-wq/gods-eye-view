@@ -16,9 +16,30 @@
   <!-- RJ Business Solutions Mission Command Bar -->
   <header id="rj-command-bar" role="banner" aria-label="RJ Mission Command Bar">
     <div class="rj-brand-group">
+      <img src="https://storage.googleapis.com/msgsndr/qQnxRHDtyx0uydPd5sRl/media/67eb83c5e519ed689430646b.jpeg" alt="RJ Business Solutions Logo" class="rj-command-logo" />
       <span class="rj-brand-badge">RJ BUSINESS SOLUTIONS</span>
       <div class="rj-brand-title">RJ GOD'S <span>EYE™</span></div>
     </div>
+    
+    <!-- Quick 1-Click Intelligence Layer Toggles -->
+    <div class="rj-quick-layers" role="toolbar" aria-label="Quick Data Layers">
+      <button type="button" class="rj-quick-layer-pill" data-rj-quick-layer="flights" onclick="window.toggleRjLayer('flights')" title="Toggle Live Flights Layer">
+        <span class="pill-dot"></span> ✈️ FLIGHTS
+      </button>
+      <button type="button" class="rj-quick-layer-pill" data-rj-quick-layer="ais-live-vessels" onclick="window.toggleRjLayer('ais-live-vessels')" title="Toggle Live AIS Ships Layer">
+        <span class="pill-dot"></span> 🚢 SHIPS
+      </button>
+      <button type="button" class="rj-quick-layer-pill" data-rj-quick-layer="satellites" onclick="window.toggleRjLayer('satellites')" title="Toggle Live Satellites Layer">
+        <span class="pill-dot"></span> 🛰️ SATELLITES
+      </button>
+      <button type="button" class="rj-quick-layer-pill" data-rj-quick-layer="cctv" onclick="window.toggleRjLayer('cctv')" title="Toggle Live CCTV Cameras Layer">
+        <span class="pill-dot"></span> 📹 CCTV
+      </button>
+      <button type="button" class="rj-quick-layer-pill" data-rj-quick-layer="earthquakes" onclick="window.toggleRjLayer('earthquakes')" title="Toggle USGS Earthquakes Layer">
+        <span class="pill-dot"></span> 💥 SEISMIC
+      </button>
+    </div>
+
     <div class="rj-telemetry-status">
       <div class="rj-status-pill">
         <span class="rj-pulse-dot" aria-hidden="true"></span>
@@ -51,8 +72,11 @@
   <!-- Title -->
   <div id="title-bar">
     <div class="title-glow"></div>
-    <h1><span class="title-logo brand-logo" data-logo-gaze data-logo-src="/logo.svg" aria-hidden="true"><img src="/logo.svg" alt="" /></span> <span>GOD'S EYE <span class="title-accent">VIEW</span></span></h1>
-    <p class="subtitle">NO PLACE LEFT BEHIND</p>
+    <h1>
+      <img src="https://storage.googleapis.com/msgsndr/qQnxRHDtyx0uydPd5sRl/media/67eb83c5e519ed689430646b.jpeg" class="rj-title-logo-img" alt="RJ Logo" />
+      <span>GOD'S EYE <span class="title-accent">VIEW</span></span>
+    </h1>
+    <p class="subtitle">POWERED BY RJ BUSINESS SOLUTIONS · RICK JEFFERSON</p>
   </div>
 
   <!-- Style indicator -->
@@ -603,7 +627,7 @@
 
   <div id="left-panel-stack">
   <!-- Data Layer Toggle Panel -->
-  <div id="data-panel" class="panel-collapsible collapsed active" data-panel-id="data-panel">
+  <div id="data-panel" class="panel-collapsible active" data-panel-id="data-panel">
     <div class="panel-glow"></div>
     <div class="data-panel-inner">
       <div class="panel-header">

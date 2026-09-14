@@ -4,11 +4,11 @@
   --rj-primary-dark: #003B8F;
   --rj-primary-light: #EAF3FF;
   --rj-surface: #F8FBFF;
-  --rj-card: rgba(11, 18, 32, 0.85);
-  --rj-card-border: rgba(10, 102, 255, 0.25);
+  --rj-card: rgba(11, 18, 32, 0.92);
+  --rj-card-border: rgba(10, 102, 255, 0.35);
   --rj-text-light: #F8FBFF;
   --rj-text-muted: #94A3B8;
-  --rj-accent-glow: 0 0 20px rgba(10, 102, 255, 0.4);
+  --rj-accent-glow: 0 0 20px rgba(10, 102, 255, 0.5);
 }
 
 /* RJ Top Mission Command Bar */
@@ -17,35 +17,49 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 48px;
-  background: rgba(7, 12, 22, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--rj-card-border);
+  height: 52px;
+  background: rgba(7, 12, 22, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1.5px solid var(--rj-primary);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(10, 102, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  z-index: 9999;
+  z-index: 10000;
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
   color: var(--rj-text-light);
+  gap: 12px;
 }
 
 .rj-brand-group {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.rj-command-logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1.5px solid var(--rj-primary);
+  box-shadow: 0 0 12px rgba(10, 102, 255, 0.5);
+  background: #0B1220;
 }
 
 .rj-brand-badge {
-  background: var(--rj-primary);
+  background: linear-gradient(135deg, #0A66FF 0%, #003B8F 100%);
   color: #FFFFFF;
-  padding: 3px 8px;
-  border-radius: 4px;
+  padding: 4px 8px;
+  border-radius: 5px;
   font-weight: 700;
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .rj-brand-title {
@@ -55,16 +69,70 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  font-size: 13px;
 }
 
 .rj-brand-title span {
   color: var(--rj-primary);
 }
 
+/* Quick Layer Pills in Command Bar */
+.rj-quick-layers {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 2px 4px;
+}
+
+.rj-quick-layer-pill {
+  background: rgba(15, 23, 42, 0.8);
+  color: #CBD5E1;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.rj-quick-layer-pill:hover {
+  background: rgba(10, 102, 255, 0.15);
+  border-color: var(--rj-primary);
+  color: #FFFFFF;
+}
+
+.rj-quick-layer-pill.active {
+  background: rgba(10, 102, 255, 0.3);
+  border-color: #0A66FF;
+  color: #FFFFFF;
+  box-shadow: 0 0 10px rgba(10, 102, 255, 0.4);
+}
+
+.rj-quick-layer-pill .pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #64748B;
+  transition: all 0.2s ease;
+}
+
+.rj-quick-layer-pill.active .pill-dot {
+  background: #10B981;
+  box-shadow: 0 0 6px #10B981;
+}
+
 .rj-telemetry-status {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .rj-status-pill {
@@ -73,7 +141,7 @@
   gap: 6px;
   background: rgba(10, 102, 255, 0.12);
   border: 1px solid rgba(10, 102, 255, 0.3);
-  padding: 3px 10px;
+  padding: 4px 10px;
   border-radius: 12px;
   font-size: 11px;
 }
@@ -96,8 +164,8 @@
 .rj-upgrade-btn {
   background: linear-gradient(135deg, #0A66FF 0%, #003B8F 100%);
   color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 6px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 6px 12px;
   border-radius: 6px;
   font-weight: 600;
   font-size: 11px;
@@ -106,11 +174,140 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  text-decoration: none;
 }
 
 .rj-upgrade-btn:hover {
   box-shadow: var(--rj-accent-glow);
   transform: translateY(-1px);
+}
+
+/* ── Top Layout & Spacing Offset Fixes (Ensuring NO overlap) ── */
+#title-bar {
+  top: 64px !important;
+  left: 24px !important;
+  z-index: 100 !important;
+}
+
+.rj-title-logo-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1.5px solid var(--rj-primary);
+  box-shadow: 0 0 10px rgba(10, 102, 255, 0.4);
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+#top-center-actions {
+  top: 64px !important;
+  z-index: 100 !important;
+}
+
+#style-indicator {
+  top: 64px !important;
+  right: 24px !important;
+  z-index: 100 !important;
+}
+
+#left-panel-stack {
+  top: 140px !important;
+  z-index: 90 !important;
+}
+
+/* ── Global Dropdown & Select Contrast Fixes ── */
+/* Ensure all native and custom select dropdowns, options, and popover menus have ultra-crisp contrast */
+select,
+option,
+.pp-select,
+#scene-select,
+#cctv-camera-select,
+.dock-popover-content select,
+.dock-popover-content option,
+.data-toggle-select,
+.layer-select,
+.layer-row select,
+.cctv-controls select,
+.scene-controls select {
+  background-color: #0B1220 !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(10, 102, 255, 0.45) !important;
+  font-family: 'JetBrains Mono', 'Inter', -apple-system, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  padding: 6px 10px !important;
+  outline: none !important;
+  -webkit-appearance: menulist !important;
+  appearance: menulist !important;
+}
+
+select:focus,
+select:focus-visible,
+#scene-select:focus,
+#cctv-camera-select:focus {
+  border-color: #0A66FF !important;
+  box-shadow: 0 0 10px rgba(10, 102, 255, 0.5) !important;
+  outline: 2px solid #0A66FF !important;
+}
+
+option {
+  background-color: #0B1220 !important;
+  color: #FFFFFF !important;
+  font-weight: 500 !important;
+  padding: 10px 14px !important;
+}
+
+option:hover,
+option:focus,
+option:checked {
+  background-color: #0A66FF !important;
+  color: #FFFFFF !important;
+}
+
+/* Dock popovers & collapsible panel visibility */
+.dock-popover-content {
+  background: rgba(11, 18, 32, 0.95) !important;
+  border: 1.5px solid var(--rj-card-border) !important;
+  color: #FFFFFF !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dock-popover-content * {
+  color: #FFFFFF;
+}
+
+.dock-popover-content .btn-label,
+.dock-popover-content .panel-title,
+.dock-popover-content .location-city-row,
+.dock-popover-content input {
+  color: #FFFFFF !important;
+}
+
+.dock-popover-content input {
+  background: #070C16 !important;
+  border: 1px solid rgba(10, 102, 255, 0.4) !important;
+  color: #FFFFFF !important;
+}
+
+.dock-popover-content input::placeholder {
+  color: #94A3B8 !important;
+}
+
+/* Layer panel row styles */
+.data-toggle-row,
+.data-layer-item {
+  color: #FFFFFF !important;
+  font-weight: 500 !important;
+}
+
+.data-toggle-row .toggle-label,
+.layer-name {
+  color: #F8FBFF !important;
+  font-weight: 600 !important;
 }
 
 /* RJ Pricing & Tier Modal */
