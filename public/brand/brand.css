@@ -1,0 +1,62 @@
+/* RJ Business Solutions — Shared Brand Tokens
+   Used by every asset in /assets */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root{
+  --rj-blue:#2563eb;
+  --rj-sky:#0ea5e9;
+  --rj-deep:#1e3a8a;
+  --rj-navy:#0f172a;
+  --rj-white:#ffffff;
+  --rj-soft:#f8fafc;
+  --rj-light:#eff6ff;
+  --rj-border:#bfdbfe;
+  --rj-muted:#dbeafe;
+  --rj-success:#10b981;
+  --rj-warning:#f59e0b;
+  --rj-danger:#ef4444;
+  --rj-text:#0f172a;
+  --rj-muted-text:#475569;
+  --rj-line:#e2e8f0;
+
+  --font-head:"Space Grotesk", system-ui, sans-serif;
+  --font-body:"Inter", system-ui, sans-serif;
+  --font-mono:"Space Grotesk", ui-monospace, monospace;
+
+  --grad-primary:linear-gradient(135deg,#2563eb 0%,#0ea5e9 100%);
+  --grad-dark:linear-gradient(135deg,#0f172a 0%,#1e3a8a 55%,#2563eb 100%);
+  --grad-light:linear-gradient(180deg,#ffffff 0%,#eff6ff 100%);
+
+  --logo-url:url("https://storage.googleapis.com/msgsndr/qQnxRHDtyx0uydPd5sRl/media/67eb83c5e519ed689430646b.jpeg");
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--font-body);
+  color:var(--rj-text);
+  background:#e2e8f0;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+.mono{font-family:var(--font-mono);letter-spacing:0.14em;text-transform:uppercase;font-weight:600}
+
+/* Reusable radial glow used across dark assets */
+.glow-sky::before{
+  content:"";
+  position:absolute;
+  right:-150px;top:-150px;
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(14,165,233,0.4) 0%,transparent 60%);
+  filter:blur(50px);
+  pointer-events:none;
+}
+.glow-sky > *{position:relative;z-index:1}
+
+/* Print helpers */
+@media print{
+  body{background:#fff}
+  .no-print{display:none !important}
+  .page-break{page-break-after:always}
+}

@@ -13,6 +13,32 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
 </head>
 <body>
+  <!-- RJ Business Solutions Mission Command Bar -->
+  <header id="rj-command-bar" role="banner" aria-label="RJ Mission Command Bar">
+    <div class="rj-brand-group">
+      <span class="rj-brand-badge">RJ BUSINESS SOLUTIONS</span>
+      <div class="rj-brand-title">RJ GOD'S <span>EYE™</span></div>
+    </div>
+    <div class="rj-telemetry-status">
+      <div class="rj-status-pill">
+        <span class="rj-pulse-dot" aria-hidden="true"></span>
+        <span>TELEMETRY: LIVE</span>
+      </div>
+      <div class="rj-status-pill">
+        <span>UTC: <strong id="rj-utc-clock">00:00:00Z</strong></span>
+      </div>
+      <a href="/interactive-tutorial.html" class="rj-upgrade-btn" style="background: rgba(255,255,255,0.08); text-decoration: none;" title="Open Full Operating Manual & Tutorial">
+        <span>📖 USER MANUAL</span>
+      </a>
+      <button type="button" class="rj-upgrade-btn" style="background: rgba(10,102,255,0.2); border-color: #0A66FF;" onclick="window.startRjTour()" title="Start Step-by-Step Tour">
+        <span>🎯 INTERACTIVE TOUR</span>
+      </button>
+      <button type="button" class="rj-upgrade-btn" onclick="document.getElementById('rj-tier-modal').classList.add('active')" aria-haspopup="dialog">
+        <span>⚡ UPGRADE PLAN</span>
+      </button>
+    </div>
+  </header>
+
   <div id="cesiumContainer"></div>
   <div id="world-overlay-root" aria-hidden="true">
     <canvas id="world-overlay-canvas"></canvas>
@@ -922,6 +948,108 @@
       <p class="loader-status">Initializing photorealistic world...</p>
     </div>
   </div>
+
+  <!-- RJ Plan & Subscription Tier Modal -->
+  <div id="rj-tier-modal" role="dialog" aria-modal="true" aria-labelledby="rj-modal-title">
+    <div class="rj-modal-card">
+      <button type="button" class="rj-modal-close" onclick="document.getElementById('rj-tier-modal').classList.remove('active')" aria-label="Close modal">×</button>
+      <div style="text-align: center;">
+        <span class="rj-brand-badge" style="margin-bottom: 8px; display: inline-block;">RJ BUSINESS SOLUTIONS</span>
+        <h2 id="rj-modal-title" style="font-size: 24px; font-weight: 800; margin: 4px 0 8px;">Upgrade Your Mission Command Tier</h2>
+        <p style="color: var(--rj-text-muted); font-size: 13px; max-width: 600px; margin: 0 auto;">Select an operational tier to unlock real-time satellite orbital footprints, live municipal CCTV feeds, and hands-free voice AI telemetry.</p>
+      </div>
+
+      <div class="rj-pricing-grid">
+        <!-- Starter Tier -->
+        <div class="rj-plan-box">
+          <div class="rj-plan-name">Solo Operator</div>
+          <div class="rj-plan-price">$49 <span>/ month</span></div>
+          <p class="rj-plan-desc">For independent analysts and spatial investigators.</p>
+          <ul class="rj-plan-features">
+            <li>Photorealistic 3D Globe</li>
+            <li>Global ADS-B Aircraft Tracking</li>
+            <li>AIS Maritime Vessel Tracking</li>
+            <li>USGS Quakes & NASA FIRMS</li>
+            <li>Standard Refresh Rate</li>
+          </ul>
+          <button type="button" class="rj-plan-btn" onclick="alert('Proceeding to Stripe Checkout for Solo Operator plan ($49/mo)...')">Select Solo</button>
+        </div>
+
+        <!-- Pro Tier -->
+        <div class="rj-plan-box featured">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="rj-plan-name">Professional Intel</div>
+            <span class="rj-brand-badge" style="font-size: 9px; padding: 2px 6px;">POPULAR</span>
+          </div>
+          <div class="rj-plan-price">$149 <span>/ month</span></div>
+          <p class="rj-plan-desc">For security teams and spatial risk operators.</p>
+          <ul class="rj-plan-features">
+            <li>All Solo Operator Features</li>
+            <li>Real-Time Satellite Orbit Passes</li>
+            <li>Live Municipal CCTV Streams</li>
+            <li>OpenAI Realtime Voice Telemetry</li>
+            <li>High-Density Entity Rendering</li>
+          </ul>
+          <button type="button" class="rj-plan-btn" style="background: linear-gradient(135deg, #0A66FF, #003B8F);" onclick="alert('Proceeding to Stripe Checkout for Professional Intel plan ($149/mo)...')">Select Pro Intel</button>
+        </div>
+
+        <!-- Mission Command Tier -->
+        <div class="rj-plan-box">
+          <div class="rj-plan-name">Mission Command</div>
+          <div class="rj-plan-price">$499 <span>/ month</span></div>
+          <p class="rj-plan-desc">For enterprise security operations & fleet dispatch.</p>
+          <ul class="rj-plan-features">
+            <li>All Pro Intel Features</li>
+            <li>Custom Asset & Fleet Tracking</li>
+            <li>Multi-User Team Workspaces (10 seats)</li>
+            <li>Automated Webhook / SMS Alerting</li>
+            <li>Dedicated High-Bandwidth Proxy</li>
+          </ul>
+          <button type="button" class="rj-plan-btn" onclick="alert('Proceeding to Stripe Checkout for Mission Command plan ($499/mo)...')">Select Mission</button>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; text-align: center; font-size: 11px; color: var(--rj-text-muted);">
+        🔒 Secure checkout powered by Stripe · 14-day money back guarantee · Built by Rick Jefferson, RJ Business Solutions
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // RJ Live Clock Synchronizer
+    function updateRjClock() {
+      const el = document.getElementById('rj-utc-clock');
+      if (el) {
+        const now = new Date();
+        el.textContent = now.toUTCString().split(' ')[4] + 'Z';
+      }
+    }
+    setInterval(updateRjClock, 1000);
+    updateRjClock();
+  </script>
+
+  <!-- RJ In-App Interactive Spotlight Tour Overlay -->
+  <div id="rj-tour-overlay" role="dialog" aria-modal="true" aria-labelledby="rj-tour-title">
+    <div class="rj-tour-card">
+      <span class="rj-tour-badge" id="rj-tour-badge">MISSION BRIEFING 1/4</span>
+      <h3 class="rj-tour-title" id="rj-tour-title">Welcome to RJ God's Eye™</h3>
+      <p class="rj-tour-body" id="rj-tour-body">You are now commanding a live, photorealistic 3D planetary digital twin. Use your mouse or trackpad to pan across global coordinates, orbit targets, and zoom smoothly from deep orbit down to street-level terrain.</p>
+      
+      <div class="rj-tour-footer">
+        <span class="rj-tour-progress" id="rj-tour-progress">STEP 1 OF 4</span>
+        <div class="rj-tour-btns">
+          <button type="button" class="rj-tour-btn rj-tour-btn-secondary" onclick="window.closeRjTour()">Skip Tour</button>
+          <button type="button" class="rj-tour-btn rj-tour-btn-secondary" id="rj-tour-prev-btn" onclick="window.prevRjTourStep()" style="display: none;">← Back</button>
+          <button type="button" class="rj-tour-btn rj-tour-btn-primary" id="rj-tour-next-btn" onclick="window.nextRjTourStep()">Next Step →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initInteractiveTour } from '/src/ui/tutorial.js';
+    initInteractiveTour();
+  </script>
 
   <script type="module" src="/src/main.js"></script>
 </body>

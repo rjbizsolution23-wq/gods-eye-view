@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Operating Manual & Step-by-Step Guide — RJ God's Eye™</title>
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/brand/tokens.css" />
+  <link rel="stylesheet" href="/brand/brand.css" />
+  <style>
+    :root {
+      --bg-dark: #070C16;
+      --bg-card: #0B1220;
+      --bg-card-hover: #101B30;
+      --primary: #0A66FF;
+      --primary-dark: #003B8F;
+      --primary-light: #EAF3FF;
+      --border: rgba(10, 102, 255, 0.2);
+      --text: #F8FBFF;
+      --text-muted: #94A3B8;
+      --accent-glow: 0 0 25px rgba(10, 102, 255, 0.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    /* Top Nav */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      background: rgba(7, 12, 22, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+    .brand-badge {
+      background: var(--primary);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .brand-title {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .brand-title span { color: var(--primary); }
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+    }
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .btn-primary:hover { box-shadow: var(--accent-glow); transform: translateY(-1px); }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { background: rgba(10, 102, 255, 0.15); }
+
+    /* Header Hero */
+    .hero {
+      max-width: 1100px;
+      margin: 40px auto 30px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 750px;
+      margin: 0 auto 24px;
+    }
+
+    /* Tab Switcher */
+    .tab-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 30px auto;
+      max-width: 900px;
+      padding: 6px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 10px 16px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(10, 102, 255, 0.35);
+    }
+
+    /* Content Panels */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .tab-panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Interactive Tutorial Walkthrough */
+    .tutorial-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 30px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    .step-indicator-bar {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .step-indicator-bar::before {
+      content: '';
+      position: absolute;
+      top: 14px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(148, 163, 184, 0.2);
+      z-index: 1;
+    }
+    .step-node {
+      position: relative;
+      z-index: 2;
+      background: var(--bg-card);
+      border: 2px solid rgba(148, 163, 184, 0.3);
+      color: var(--text-muted);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .step-node.active {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 0 12px var(--primary);
+    }
+    .step-node.completed {
+      border-color: #10B981;
+      background: #10B981;
+      color: #fff;
+    }
+    .step-card {
+      display: none;
+    }
+    .step-card.active {
+      display: block;
+    }
+    .step-content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+    .step-badge {
+      background: rgba(10, 102, 255, 0.15);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 12px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .step-card h3 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .step-card p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    .step-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .interactive-sim-box {
+      background: #060A12;
+      border: 1px solid rgba(10, 102, 255, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      position: relative;
+    }
+    .sim-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+
+    /* Feature Cards & Manual Sections */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.2s;
+    }
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+    .card-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+    .card h4 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .card p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .shortcut-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 12px;
+    }
+    .shortcut-table th, .shortcut-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      text-align: left;
+    }
+    .shortcut-table th { color: var(--primary); font-family: 'JetBrains Mono', monospace; }
+    .kbd {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+    }
+
+    /* Support Block */
+    .support-banner {
+      background: linear-gradient(135deg, rgba(10, 102, 255, 0.15) 0%, rgba(0, 59, 143, 0.15) 100%);
+      border: 1px solid var(--primary);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .support-banner h3 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+    .support-banner p { color: var(--text-muted); font-size: 14px; max-width: 600px; margin: 0 auto 20px; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <a href="/" class="brand-logo-wrap">
+      <span class="brand-badge">RJ BUSINESS SOLUTIONS</span>
+      <div class="brand-title">RJ GOD'S <span>EYE™</span> MANUAL</div>
+    </a>
+    <div class="nav-actions">
+      <a href="/" class="btn btn-secondary">← Back to Mission Console</a>
+      <a href="/#upgrade" class="btn btn-primary">⚡ Upgrade Tier</a>
+    </div>
+  </nav>
+
+  <!-- Hero Header -->
+  <header class="hero">
+    <span class="brand-badge" style="margin-bottom: 12px;">OFFICIAL OPERATING MANUAL v1.0</span>
+    <h1>Mastering the Planetary Intelligence Command Center</h1>
+    <p>Comprehensive step-by-step interactive walkthrough, keyboard shortcuts, multi-domain telemetry guides, and mission operations protocol.</p>
+  </header>
+
+  <div class="container">
+    <!-- Interactive Tab Navigation -->
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('tutorial', this)">🚀 Interactive Walkthrough</button>
+      <button class="tab-btn" onclick="switchTab('controls', this)">🕹️ Navigation & Controls</button>
+      <button class="tab-btn" onclick="switchTab('telemetry', this)">📡 Live Data Layers</button>
+      <button class="tab-btn" onclick="switchTab('voice', this)">🎙️ Voice Mission AI</button>
+      <button class="tab-btn" onclick="switchTab('support', this)">🛡️ Support & FAQs</button>
+    </div>
+
+    <!-- TAB 1: INTERACTIVE STEP-BY-STEP TUTORIAL -->
+    <div id="panel-tutorial" class="tab-panel active">
+      <div class="tutorial-box">
+        <div class="step-indicator-bar">
+          <div class="step-node active" id="node-1">1</div>
+          <div class="step-node" id="node-2">2</div>
+          <div class="step-node" id="node-3">3</div>
+          <div class="step-node" id="node-4">4</div>
+          <div class="step-node" id="node-5">5</div>
+        </div>
+
+        <!-- STEP 1 -->
+        <div class="step-card active" id="step-1">
+          <div class="step-content-grid">
+            <div>
+              <span class="step-badge">STEP 1 OF 5</span>
+              <h3>Navigating the 3D Photorealistic Globe</h3>
+              <p>RJ God's Eye renders the Earth using photorealistic 3D tiles. You can orbit, tilt, pan, and zoom to any street corner on the planet with sub-meter fidelity.</p>
+              <ul style="margin-left: 20px; font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+                <li><strong>Left Mouse Drag:</strong> Pan across the planetary surface.</li>
+                <li><strong>Right Mouse Drag / Wheel:</strong> Zoom in and out smoothly.</li>
+                <li><strong>Middle Click / Ctrl + Drag:</strong> Tilt camera pitch and rotate heading.</li>
+              </ul>
+              <div class="step-actions">
+                <button class="btn btn-primary" onclick="nextStep(2)">Next: Live Telemetry Layers →</button>
+              </div>
+            </div>
+            <div class="interactive-sim-box">
+              <div class="sim-header">
+                <span>SIMULATED CAMERA HUD</span>
+                <span style="color: #10B981;">STATUS: LOCKED</span>
+              </div>
+              <p style="color: var(--primary);">LAT: 37.7749° N · LON: 122.4194° W</p>
+              <p style="color: var(--text-muted);">ALTITUDE: 1,240m · PITCH: -32° · HEADING: 045°</p>
+              <div style="margin-top: 14px; padding: 10px; background: rgba(10,102,255,0.1); border-radius: 6px; border-left: 3px solid var(--primary);">
+                💡 <em>Tip: Press <strong>R</strong> at any time to level the horizon.</em>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step-card" id="step-2">
+          <div class="step-content-grid">
+            <div>
+              <span class="step-badge">STEP 2 OF 5</span>
+              <h3>Activating Multi-Domain Data Layers</h3>
+              <p>Access the collapsible spatial layer tray in the bottom control dock to toggle global feeds on and off simultaneously.</p>
+              <ul style="margin-left: 20px; font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+                <li><strong>Flights (ADS-B):</strong> Live commercial & military air traffic with altitude vectors.</li>
+                <li><strong>Maritime (AIS):</strong> Cargo, tanker, and passenger ships with draft and destination.</li>
+                <li><strong>Orbital Satellites:</strong> Live SGP4 orbit paths and real-time ground footprints.</li>
+                <li><strong>CCTV Cameras & Hazards:</strong> Live traffic cams, USGS earthquakes, and NASA fires.</li>
+              </ul>
+              <div class="step-actions">
+                <button class="btn btn-secondary" onclick="nextStep(1)">← Back</button>
+                <button class="btn btn-primary" onclick="nextStep(3)">Next: First-Person Cockpit →</button>
+              </div>
+            </div>
+            <div class="interactive-sim-box">
+              <div class="sim-header">
+                <span>ACTIVE TELEMETRY STREAMS</span>
+                <span style="color: var(--primary);">4 FEEDS ACTIVE</span>
+              </div>
+              <p>✈️ FLIGHTS: 14,892 TRACKED</p>
+              <p>🚢 VESSELS: 28,410 TRACKED</p>
+              <p>🛰️ SATELLITES: 7,120 IN ORBIT</p>
+              <p>📹 CCTV FEEDS: 3,450 CONNECTED</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step-card" id="step-3">
+          <div class="step-content-grid">
+            <div>
+              <span class="step-badge">STEP 3 OF 5</span>
+              <h3>First-Person Aircraft Cockpit HUD</h3>
+              <p>Select any flying aircraft to lock its trajectory and enter the tactical first-person Cockpit HUD view.</p>
+              <ul style="margin-left: 20px; font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+                <li><strong>Pitch & Roll Arcs:</strong> Real-time artificial horizon and bank angle telemetry.</li>
+                <li><strong>Destination Vector:</strong> Directional indicator pointing toward the arrival airport.</li>
+                <li><strong>Chase Camera Mode:</strong> Toggle between cockpit glass and trailing cinematic chase view.</li>
+              </ul>
+              <div class="step-actions">
+                <button class="btn btn-secondary" onclick="nextStep(2)">← Back</button>
+                <button class="btn btn-primary" onclick="nextStep(4)">Next: Voice Mission AI →</button>
+              </div>
+            </div>
+            <div class="interactive-sim-box">
+              <div class="sim-header">
+                <span>COCKPIT HUD · FLIGHT UAL442</span>
+                <span style="color: #10B981;">AUTOPILOT LOCK</span>
+              </div>
+              <p style="color: #10B981;">AIRSPEED: 480 KTS · ALT: 36,000 FT</p>
+              <p style="color: var(--text-muted);">SQUAWK: 7700 · DEST: KSFO (240 NM)</p>
+              <p style="color: var(--primary);">HORIZON: LEVEL · BANK: 0°</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="step-card" id="step-4">
+          <div class="step-content-grid">
+            <div>
+              <span class="step-badge">STEP 4 OF 5</span>
+              <h3>Hands-Free Voice Mission Control</h3>
+              <p>RJ God's Eye includes OpenAI Realtime voice AI. Speak natural language commands into your microphone to pilot the planetary camera.</p>
+              <div style="background: rgba(10,102,255,0.1); border-radius: 8px; padding: 12px; margin-bottom: 16px; font-size: 13px;">
+                🗣️ <strong>Try Saying:</strong><br>
+                <em>"Fly to Tokyo Haneda and show incoming flights."</em><br>
+                <em>"Show me container ships near the Suez Canal."</em><br>
+                <em>"Track Starlink satellites passing overhead."</em>
+              </div>
+              <div class="step-actions">
+                <button class="btn btn-secondary" onclick="nextStep(3)">← Back</button>
+                <button class="btn btn-primary" onclick="nextStep(5)">Next: Mission Command Tiers →</button>
+              </div>
+            </div>
+            <div class="interactive-sim-box">
+              <div class="sim-header">
+                <span>VOICE TELEMETRY LISTENER</span>
+                <span style="color: var(--primary);">MIC ACTIVE</span>
+              </div>
+              <p style="color: #CBD5E1;">> USER: "Fly to Strait of Gibraltar"</p>
+              <p style="color: #10B981;">> SYSTEM: Routing camera to [35.98° N, 5.60° W]...</p>
+              <p style="color: var(--primary);">> EXECUTED: AIS Vessel Overlay engaged.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 5 -->
+        <div class="step-card" id="step-5">
+          <div class="step-content-grid">
+            <div>
+              <span class="step-badge">STEP 5 OF 5</span>
+              <h3>Commercial Tiers & Support</h3>
+              <p>Unlock enterprise power with RJ God's Eye subscription tiers. Every plan is backed by dedicated support from RJ Business Solutions.</p>
+              <ul style="margin-left: 20px; font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+                <li><strong>Solo Operator ($49/mo):</strong> 3D globe, flight/vessel tracking.</li>
+                <li><strong>Professional Intel ($149/mo):</strong> Satellite passes, CCTV feeds, voice AI.</li>
+                <li><strong>Mission Command ($499/mo):</strong> Private asset tracking, geofence alerts, 10 team seats.</li>
+              </ul>
+              <div class="step-actions">
+                <button class="btn btn-secondary" onclick="nextStep(4)">← Back</button>
+                <a href="/" class="btn btn-primary">🚀 Launch Mission Console Now</a>
+              </div>
+            </div>
+            <div class="interactive-sim-box">
+              <div class="sim-header">
+                <span>RJ BUSINESS SOLUTIONS GUARANTEE</span>
+                <span style="color: #10B981;">ACTIVE</span>
+              </div>
+              <p>FOUNDER: Rick Jefferson</p>
+              <p>SUPPORT: support@rjbusinesssolutions.org</p>
+              <p>SLA: 99.9% Uptime · 14-Day Money Back Guarantee</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: CONTROLS & SHORTCUTS -->
+    <div id="panel-controls" class="tab-panel">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-icon">🖱️</div>
+          <h4>Mouse & Touch Controls</h4>
+          <p>Precision 3D navigation controls for desktop, trackpad, and touch displays.</p>
+          <table class="shortcut-table">
+            <tr><th>Action</th><th>Mouse Input</th></tr>
+            <tr><td>Pan Surface</td><td><span class="kbd">Left Click + Drag</span></td></tr>
+            <tr><td>Smooth Zoom</td><td><span class="kbd">Scroll Wheel</span> or <span class="kbd">Right Drag</span></td></tr>
+            <tr><td>Tilt / Pitch</td><td><span class="kbd">Middle Click + Drag</span> or <span class="kbd">Ctrl + Drag</span></td></tr>
+            <tr><td>Rotate Heading</td><td><span class="kbd">Shift + Left Drag</span></td></tr>
+            <tr><td>Entity Lock</td><td><span class="kbd">Double Click</span> on aircraft/ship</td></tr>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">⌨️</div>
+          <h4>Keyboard Shortcuts</h4>
+          <p>Quick hotkeys to toggle camera perspectives, reset views, and toggle layers.</p>
+          <table class="shortcut-table">
+            <tr><th>Shortcut</th><th>Function</th></tr>
+            <tr><td><span class="kbd">R</span></td><td>Reset & Level Camera Horizon</td></tr>
+            <tr><td><span class="kbd">Space</span></td><td>Toggle Cockpit HUD Mode</td></tr>
+            <tr><td><span class="kbd">F</span></td><td>Toggle Fullscreen Mode</td></tr>
+            <tr><td><span class="kbd">1 - 5</span></td><td>Switch Active Layer Presets</td></tr>
+            <tr><td><span class="kbd">Esc</span></td><td>Close Modals / Exit Entity Lock</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: TELEMETRY LAYERS -->
+    <div id="panel-telemetry" class="tab-panel">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-icon">✈️</div>
+          <h4>Aviation Telemetry (ADS-B)</h4>
+          <p>Live global aircraft tracking aggregating OpenSky and adsb.lol feeds. Displays real-time barometric altitude, ground speed, callsign, and route paths.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🚢</div>
+          <h4>Maritime Vessels (AIS)</h4>
+          <p>Real-time transponder data from cargo container vessels, oil tankers, tugs, and passenger liners streaming via global AISStream receiver networks.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🛰️</div>
+          <h4>Orbital Satellites (SGP4)</h4>
+          <p>Propagates orbital trajectories from CelesTrak TLE ephemerides. Includes Starlink constellations, GPS satellites, and ISS space station tracking.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📹</div>
+          <h4>Ground CCTV & Environmental Hazards</h4>
+          <p>Direct video feeds from municipal traffic camera APIs paired with USGS real-time seismic event pins and NASA FIRMS active wildfire hotspots.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: VOICE MISSION AI -->
+    <div id="panel-voice" class="tab-panel">
+      <div class="card" style="margin-bottom: 24px;">
+        <div class="card-icon">🎙️</div>
+        <h4>Autonomous Voice Pilot Architecture</h4>
+        <p>Powered by OpenAI Realtime WebSockets, RJ God's Eye translates spoken intent into programmatic Cesium camera flight paths with zero latency.</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h4>Navigation Commands</h4>
+          <ul style="margin-left: 20px; font-size: 13px; color: var(--text-muted);">
+            <li><em>"Fly to London Heathrow Airport"</em></li>
+            <li><em>"Orbit around the Panama Canal"</em></li>
+            <li><em>"Zoom into Manhattan financial district"</em></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Filter & Layer Commands</h4>
+          <ul style="margin-left: 20px; font-size: 13px; color: var(--text-muted);">
+            <li><em>"Show only military aircraft"</em></li>
+            <li><em>"Highlight earthquakes above magnitude 5.0"</em></li>
+            <li><em>"Switch on traffic camera overlays"</em></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: SUPPORT & FAQS -->
+    <div id="panel-support" class="tab-panel">
+      <div class="grid-2">
+        <div class="card">
+          <h4>Why does the globe say 'Keyless Mode'?</h4>
+          <p>RJ God's Eye operates out-of-the-box with free public feeds. Upgrading to a paid tier unlocks server-side high-bandwidth Google 3D tiles and dedicated satellite streams.</p>
+        </div>
+        <div class="card">
+          <h4>How do I invite team members?</h4>
+          <p>Subscribers on the <strong>Mission Command ($499/mo)</strong> tier can generate invite links for up to 10 operator seats with shared custom geofences and private trackers.</p>
+        </div>
+        <div class="card">
+          <h4>Can I export intelligence reports?</h4>
+          <p>Yes. The Mission Command tier allows 1-click generation of PDF mission dossiers containing current camera frames, entity metadata, and spatial coordinates.</p>
+        </div>
+        <div class="card">
+          <h4>Is my data private?</h4>
+          <p>Yes. Private asset tracks and custom geofences are encrypted at rest with AES-256 and are never shared or indexed publicly.</p>
+        </div>
+      </div>
+
+      <!-- Customer Support Banner -->
+      <div class="support-banner">
+        <h3>Need Dedicated Mission Support?</h3>
+        <p>Our engineering team and founder Rick Jefferson are available to assist with custom integrations, enterprise deployments, and high-volume data pipelines.</p>
+        <a href="mailto:support@rjbusinesssolutions.org" class="btn btn-primary">📧 Contact RJ Business Solutions Support</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + tabId).classList.add('active');
+    }
+
+    function nextStep(stepNum) {
+      document.querySelectorAll('.step-card').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.step-node').forEach((n, idx) => {
+        n.classList.remove('active');
+        if (idx + 1 < stepNum) n.classList.add('completed');
+        else n.classList.remove('completed');
+      });
+      document.getElementById('step-' + stepNum).classList.add('active');
+      document.getElementById('node-' + stepNum).classList.add('active');
+    }
+  </script>
+</body>
+</html>
